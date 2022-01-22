@@ -2,8 +2,22 @@
 {% block converted1 %}
 <div class="content-section2">
     <label for="story">Your audio converted:</label>
-    <textarea id="story" method="GET" name="story" rows="50" cols="100"></textarea>
+    <textarea id="story" method="GET" name="story" rows="10" cols="100">{{ convtext }}</textarea>
 </div>
 {% endblock converted1 %}
 
-{% block converted2 %}{% endblock converted2 %}
+{% block converted2 %}
+<div class="content-section">
+    <h3>Translate your file!</h3>
+    <p class='text-muted'>You can translate your text to any language you like.
+      <form action = "http://localhost:5000/uploader" method = "POST" enctype = "multipart/form-data">
+        <select name="language" id="lang-select">
+        <option value="Arabic">Arabic</option>
+        <option value="Chinese">Chinese</option>
+    </select>
+      <input type = "submit"/>
+      <input type="submit" name="download" value="Download Text"/>
+      </form>  
+    </p>
+  </div>
+{% endblock converted2 %}
