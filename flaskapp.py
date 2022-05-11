@@ -45,19 +45,17 @@ def upload_file():
                 if allowed_file(f.filename ):
                     f.save('upload/file.mp3')
                     var = os.listdir('upload')[0]
-                    print("******************")
-                    print(var)
-                    print("******************")
+                    
                     #translator code here
                 else:
                     return "Wrong file type"
 
-                print("56")
+                
                 with open('upload/file.mp3', 'rb') as f:
                     print("58")
                     res = stt.recognize(audio=f, content_type='audio/mp3', model='en-US_NarrowbandModel',).get_result()
 
-                print("59")
+               
                 global voicetext 
                 voicetext = res['results'][0]['alternatives'][0]['transcript']
                 
@@ -70,7 +68,7 @@ def upload_file():
     
     arabic='en-ar'
     chinese='en-zh'
-    print("63")
+    
     if request.method == 'POST':
             l = request.form.get('language')
             if l.strip() == "Arabic" :
@@ -78,18 +76,12 @@ def upload_file():
             else :
                 lang = chinese
 
-            print('================')
-            print(l)
-            print(lang)
-            print('=========')
+          
             translation = lt.translate(text=voicetext, model_id=lang).get_result()
             
             global translatedtext
             translatedtext = translation['translations'][0]['translation']
-            print("**********************")
-            print(l)
-            print(translatedtext)
-            print("**********************")
+            
 
             try:
                 if request.form['download']:
